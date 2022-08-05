@@ -34,18 +34,18 @@ print("Confusion matrix:")
 print(classification_report(y_true, y_pred))
 
 # method 2
-cm_lr_result = predictions.crosstab("predictedLabel", "label")
-cm_lr_result = cm_lr_result.toPandas()
-cm_lr_result
-
-# method 3
 y_true = predictions.select("label")
 y_true = y_true.toPandas()
 y_pred = predictions.select("predictedLabel")
 y_pred = y_pred.toPandas()
-
 cnf_matrix = confusion_matrix(y_true, y_pred,labels=['delinquent', 'not_delinquent'])
 cnf_matrix
+
+# method 3
+cm_lr_result = predictions.crosstab("predictedLabel", "label")
+cm_lr_result = cm_lr_result.toPandas()
+cm_lr_result
+
 TP = float(cm_lr_result.iat[0,1])
 FP = float(cm_lr_result.iat[0,2])
 TN = float(cm_lr_result.iat[1,2])
